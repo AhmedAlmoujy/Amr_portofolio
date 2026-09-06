@@ -550,20 +550,6 @@ ul, ol {
   color: var(--blue);
 }
 
-.brand-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 900px) {
-  .brand-title {
-    display: none;
-  }
-}
-
 .nav-desktop {
   display: flex;
   align-items: center;
