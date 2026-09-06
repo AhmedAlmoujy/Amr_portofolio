@@ -670,14 +670,20 @@ ul, ol {
   .hero-stage {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 40px;
+    gap: 36px;
+    padding: 20px 0;
   }
 
   .hero-portrait-wrap {
     order: -1;
     margin: 0 auto;
     width: 100%;
-    max-width: 380px;
+    max-width: 480px;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-copy {
@@ -685,9 +691,16 @@ ul, ol {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .hero-portrait-wrap {
-    max-width: 320px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-lg);
   }
 }
 
