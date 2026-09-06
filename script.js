@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyActions();
   initInquiryForm();
   initScrollSpy();
+  initScrollAnimations();
+  initLanguageSwitcher();
 });
 
 /* ==========================================================================
@@ -774,3 +776,206 @@ function initScrollSpy() {
 
   sections.forEach(section => observer.observe(section));
 }
+
+/* ==========================================================================
+   10. Professional Scroll Animations & Micro-Interactions
+   ========================================================================== */
+function initScrollAnimations() {
+  const animatedTargets = document.querySelectorAll(
+    '.reveal-init, .section-head, .stat-card, .case-card, .service-card, .process-step, .proof-card, .contact-card, .market-visual, .hero-stats-bar'
+  );
+
+  animatedTargets.forEach((el, idx) => {
+    if (!el.classList.contains('reveal-init')) {
+      el.classList.add('reveal-init');
+    }
+    // Stagger delay within grid containers
+    const siblingIndex = Array.from(el.parentNode.children).indexOf(el);
+    if (siblingIndex > 0 && siblingIndex <= 4) {
+      el.classList.add(`reveal-delay-${Math.min(siblingIndex, 4)}`);
+    }
+  });
+
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        
+        // Check if this element has stat counters to animate
+        const counters = entry.target.querySelectorAll('.hero-stat-num[data-count]');
+        counters.forEach(counter => {
+          if (!counter.dataset.animated) {
+            animateCounter(counter);
+            counter.dataset.animated = 'true';
+          }
+        });
+
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  animatedTargets.forEach(el => revealObserver.observe(el));
+
+  // Magnetic 3D Micro-Tilt on Cards
+  initCardTilt();
+}
+
+function animateCounter(el) {
+  const target = parseFloat(el.getAttribute('data-count') || '0');
+  const prefix = el.getAttribute('data-prefix') || '';
+  const suffix = el.getAttribute('data-suffix') || '';
+  const duration = 1600;
+  const startTime = performance.now();
+  const isDecimal = target % 1 !== 0;
+
+  el.classList.add('stat-num-counting');
+
+  function updateCount(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease Out Cubic
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    const currentVal = easeProgress * target;
+
+    const formattedVal = isDecimal ? currentVal.toFixed(2) : Math.floor(currentVal);
+    el.innerHTML = `${prefix}${formattedVal}<em>${suffix}</em>`;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateCount);
+    } else {
+      const finalVal = isDecimal ? target.toFixed(2) : target;
+      el.innerHTML = `${prefix}${finalVal}<em>${suffix}</em>`;
+      setTimeout(() => el.classList.remove('stat-num-counting'), 400);
+    }
+  }
+
+  requestAnimationFrame(updateCount);
+}
+
+function initCardTilt() {
+  if (window.matchMedia('(max-width: 990px)').matches) return;
+
+  const tiltCards = document.querySelectorAll('.portrait-frame, .case-card, .service-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const mult = 0.035;
+      card.style.transform = `perspective(1000px) rotateX(${-y * mult}deg) rotateY(${x * mult}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* ==========================================================================
+   11. Bilingual English / Arabic System (Thmanyah Font)
+   ========================================================================== */
+const i18n = {
+  en: {
+    'lang-label': 'العربية',
+    'nav-home': 'Home',
+    'nav-about': 'About',
+    'nav-results': 'Results',
+    'nav-cases': 'Case Studies',
+    'nav-markets': 'Markets',
+    'nav-services': 'Services',
+    'nav-process': 'Process',
+    'nav-tools': 'Stack',
+    'nav-exp': 'Experience',
+    'nav-contact': 'Contact',
+    'nav-cta': 'Let’s Talk',
+    'whatsapp-cta': 'Message on WhatsApp',
+    'hero-badge': 'Available for Q1–Q2 Projects',
+    'hero-heading': '<span class="line-block">Turning Ad Spend</span> <span class="line-block">Into <em>Measurable Revenue</em></span>',
+    'hero-desc': 'I’m <strong>Amr Khaled</strong> — a Performance Marketer and Media Buyer specialized in Paid Advertising, E-commerce, and Growth. I look beyond vanity clicks to optimize the full funnel from first impression to verified purchase.',
+    'hero-btn-work': 'View My Work',
+    'hero-btn-contact': 'Let’s Work Together',
+    'stat-impressions': 'Ad Impressions Tracked',
+    'stat-roas': 'Peak E-com Purchase ROAS',
+    'stat-spend': 'SAR Google Spend Managed',
+    'stat-conversions': 'High-Intent Conversions'
+  },
+  ar: {
+    'lang-label': 'English',
+    'nav-home': 'الرئيسية',
+    'nav-about': 'عن عمرو',
+    'nav-results': 'النتائج',
+    'nav-cases': 'دراسات الحالة',
+    'nav-markets': 'الأسواق',
+    'nav-services': 'الخدمات',
+    'nav-process': 'منهجية العمل',
+    'nav-tools': 'الأدوات',
+    'nav-exp': 'الخبرات',
+    'nav-contact': 'تواصل معي',
+    'nav-cta': 'احجز محادثة',
+    'whatsapp-cta': 'تواصل عبر واتساب',
+    'hero-badge': 'متاح للمشاريع الجديدة • الربع الأول والثاني',
+    'hero-heading': '<span class="line-block">تحويل الميزانيات الإعلانية</span> <span class="line-block">إلى <em>أرباح قابلة للقياس</em></span>',
+    'hero-desc': 'أنا <strong>عمرو خالد</strong> — أخصائي تسويق رقمي وإدارة حملات إعلانية (Media Buyer) متخصص في الإعلانات الممولة، التجارة الإلكترونية، ومضاعفة المبيعات. أتجاوز مقاييس المشاهدات والنقرات الوهمية لأركز على تحسين القمع الإعلاني من أول ظهور حتى إتمام الشراء الفعلي.',
+    'hero-btn-work': 'استعرض أعمالي',
+    'hero-btn-contact': 'لنعمل معاً',
+    'stat-impressions': 'ظهور إعلاني تم تتبعه بدقة',
+    'stat-roas': 'أعلى عائد إنفاق إعلاني (ROAS)',
+    'stat-spend': 'ميزانيات جوجل مدارة (ريال)',
+    'stat-conversions': 'تحويل بيعي مؤكد عالي النية'
+  }
+};
+
+function initLanguageSwitcher() {
+  const desktopBtn = document.getElementById('lang-toggle');
+  const mobileBtn = document.getElementById('mobile-lang-toggle');
+  
+  // Read preference or default to English
+  const savedLang = localStorage.getItem('amr_portfolio_lang') || 'en';
+  setLanguage(savedLang, false);
+
+  function toggle() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'en';
+    const newLang = currentLang === 'ar' ? 'en' : 'ar';
+    setLanguage(newLang, true);
+  }
+
+  if (desktopBtn) desktopBtn.addEventListener('click', toggle);
+  if (mobileBtn) mobileBtn.addEventListener('click', toggle);
+}
+
+function setLanguage(lang, triggerCounters = false) {
+  const html = document.documentElement;
+  const isAr = lang === 'ar';
+
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  document.body.classList.toggle('lang-ar', isAr);
+
+  localStorage.setItem('amr_portfolio_lang', lang);
+
+  // Update toggle buttons label
+  const labelText = i18n[lang]['lang-label'];
+  document.querySelectorAll('.lang-toggle-btn .lang-label').forEach(el => {
+    el.textContent = labelText;
+  });
+
+  // Update all translatable elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang] && i18n[lang][key]) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  // Re-run counters if triggered by user switch
+  if (triggerCounters) {
+    document.querySelectorAll('.hero-stat-num[data-count]').forEach(el => {
+      animateCounter(el);
+    });
+  }
+}
+

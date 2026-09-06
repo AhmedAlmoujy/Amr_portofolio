@@ -3,7 +3,7 @@
    Design System & Styling — Inspired by omarashraf.tech Dark Luxury UX
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap');
 
 :root {
   /* Color Palette */
@@ -69,7 +69,7 @@
   --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "Consolas", ui-monospace, monospace;
-  --font-arabic: "IBM Plex Sans Arabic", "Inter", sans-serif;
+  --font-arabic: "Thmanyah", "IBM Plex Sans Arabic", "Inter", sans-serif;
 
   --w-thin: 200;
   --w-light: 300;
@@ -2649,3 +2649,235 @@ ul, ol {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ==========================================================================
+   Arabic (RTL) & Thmanyah Typography System
+   ========================================================================== */
+html[lang="ar"],
+body.lang-ar {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--font-arabic);
+}
+
+html[lang="ar"] body,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5,
+html[lang="ar"] h6,
+html[lang="ar"] p,
+html[lang="ar"] span,
+html[lang="ar"] a,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] textarea,
+html[lang="ar"] select,
+html[lang="ar"] .nav-link,
+html[lang="ar"] .btn,
+html[lang="ar"] .hero-headline,
+html[lang="ar"] .h2-title,
+html[lang="ar"] .h3-title {
+  font-family: var(--font-arabic);
+  letter-spacing: normal !important;
+}
+
+html[lang="ar"] .hero-headline {
+  line-height: 1.28;
+}
+
+html[lang="ar"] .h2-title {
+  line-height: 1.34;
+}
+
+html[lang="ar"] .mono {
+  font-family: var(--font-arabic), var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+html[lang="ar"] .btn svg {
+  transform: scaleX(-1);
+}
+
+html[lang="ar"] .header-nav {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+html[lang="ar"] .header-actions {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[lang="ar"] .toast-msg {
+  right: auto;
+  left: 28px;
+}
+
+html[lang="ar"] .section-head {
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] .hero-eyebrow-row {
+  justify-content: flex-start;
+}
+
+@media (max-width: 990px) {
+  html[lang="ar"] .hero-eyebrow-row {
+    justify-content: center;
+  }
+}
+
+/* Language Switcher Button */
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-arabic);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  user-select: none;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(138, 180, 248, 0.12);
+  border-color: var(--blue);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(138, 180, 248, 0.2);
+}
+
+.lang-toggle-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--blue);
+}
+
+.lang-toggle-btn .lang-label {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Professional Animations & Micro-Interactions System
+   ========================================================================== */
+
+/* 1. Hero Entrance Animation */
+@keyframes heroGlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-anim-item {
+  opacity: 0;
+  animation: heroGlideIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-anim-item:nth-child(1) { animation-delay: 0.1s; }
+.hero-anim-item:nth-child(2) { animation-delay: 0.22s; }
+.hero-anim-item:nth-child(3) { animation-delay: 0.34s; }
+.hero-anim-item:nth-child(4) { animation-delay: 0.46s; }
+.hero-anim-item:nth-child(5) { animation-delay: 0.58s; }
+
+/* 2. Scroll Reveal Animations */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-init.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+
+/* 3. Button Shimmer Effect */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: none;
+}
+
+.btn--primary:hover::after {
+  left: 130%;
+  transition: left 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 4. Interactive Card Glow on Hover */
+.stat-card,
+.case-card,
+.service-card,
+.process-step,
+.proof-card {
+  transition: transform var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+
+.stat-card:hover,
+.case-card:hover,
+.service-card:hover,
+.process-step:hover,
+.proof-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(138, 180, 248, 0.35);
+  box-shadow: 0 16px 40px -12px rgba(66, 133, 244, 0.22);
+}
+
+/* 5. Stat Counter Pulse */
+.stat-num-counting {
+  color: var(--blue);
+  text-shadow: 0 0 20px rgba(138, 180, 248, 0.4);
+}
+

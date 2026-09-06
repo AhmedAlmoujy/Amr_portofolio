@@ -61,28 +61,27 @@
       <a href="#home" class="brand-logo" aria-label="Amr Khaled Home">
         <span class="brand-name">Amr<span>_</span></span>
         <span class="brand-title">Performance Marketer</span>
-      </a>
-
-      <!-- Desktop Nav -->
+            <!-- Desktop Nav -->
       <nav class="nav-desktop" aria-label="Primary Navigation">
-        <a href="#home" class="nav-link is-active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#results" class="nav-link">Results</a>
-        <a href="#case-study" class="nav-link">Case Studies</a>
-        <a href="#markets" class="nav-link">Markets</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#process" class="nav-link">Process</a>
-        <a href="#tools" class="nav-link">Stack</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#home" class="nav-link is-active" data-i18n="nav-home">Home</a>
+        <a href="#about" class="nav-link" data-i18n="nav-about">About</a>
+        <a href="#results" class="nav-link" data-i18n="nav-results">Results</a>
+        <a href="#case-study" class="nav-link" data-i18n="nav-cases">Case Studies</a>
+        <a href="#markets" class="nav-link" data-i18n="nav-markets">Markets</a>
+        <a href="#services" class="nav-link" data-i18n="nav-services">Services</a>
+        <a href="#process" class="nav-link" data-i18n="nav-process">Process</a>
+        <a href="#tools" class="nav-link" data-i18n="nav-tools">Stack</a>
+        <a href="#experience" class="nav-link" data-i18n="nav-exp">Experience</a>
+        <a href="#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
       </nav>
 
       <!-- Action & Mobile Toggle -->
       <div class="header-actions">
-        <span class="badge-live" style="display: none;">
-          <span class="badge-dot"></span> Available
-        </span>
-        <a href="#contact" class="btn btn--primary" style="padding: 9px 20px; font-size: 13.5px;">
+        <button class="lang-toggle-btn" id="lang-toggle" aria-label="Toggle language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span class="lang-label">العربية</span>
+        </button>
+        <a href="#contact" class="btn btn--primary" style="padding: 9px 20px; font-size: 13.5px;" data-i18n="nav-cta">
           Let’s Talk
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
@@ -98,19 +97,23 @@
   <!-- Mobile Drawer Menu -->
   <div class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
     <div class="mobile-nav-links">
-      <a href="#home" class="mobile-nav-link"><span class="mono">01</span> Home</a>
-      <a href="#about" class="mobile-nav-link"><span class="mono">02</span> About</a>
-      <a href="#results" class="mobile-nav-link"><span class="mono">03</span> Results</a>
-      <a href="#case-study" class="mobile-nav-link"><span class="mono">04</span> Case Studies</a>
-      <a href="#markets" class="mobile-nav-link"><span class="mono">05</span> Markets</a>
-      <a href="#services" class="mobile-nav-link"><span class="mono">06</span> Services</a>
-      <a href="#process" class="mobile-nav-link"><span class="mono">07</span> Process</a>
-      <a href="#tools" class="mobile-nav-link"><span class="mono">08</span> Stack</a>
-      <a href="#experience" class="mobile-nav-link"><span class="mono">09</span> Experience</a>
-      <a href="#contact" class="mobile-nav-link"><span class="mono">10</span> Contact</a>
+      <a href="#home" class="mobile-nav-link"><span class="mono">01</span> <span data-i18n="nav-home">Home</span></a>
+      <a href="#about" class="mobile-nav-link"><span class="mono">02</span> <span data-i18n="nav-about">About</span></a>
+      <a href="#results" class="mobile-nav-link"><span class="mono">03</span> <span data-i18n="nav-results">Results</span></a>
+      <a href="#case-study" class="mobile-nav-link"><span class="mono">04</span> <span data-i18n="nav-cases">Case Studies</span></a>
+      <a href="#markets" class="mobile-nav-link"><span class="mono">05</span> <span data-i18n="nav-markets">Markets</span></a>
+      <a href="#services" class="mobile-nav-link"><span class="mono">06</span> <span data-i18n="nav-services">Services</span></a>
+      <a href="#process" class="mobile-nav-link"><span class="mono">07</span> <span data-i18n="nav-process">Process</span></a>
+      <a href="#tools" class="mobile-nav-link"><span class="mono">08</span> <span data-i18n="nav-tools">Stack</span></a>
+      <a href="#experience" class="mobile-nav-link"><span class="mono">09</span> <span data-i18n="nav-exp">Experience</span></a>
+      <a href="#contact" class="mobile-nav-link"><span class="mono">10</span> <span data-i18n="nav-contact">Contact</span></a>
     </div>
-    <div style="padding-top: 24px; border-top: 1px solid var(--border);">
-      <a href="https://wa.me/201553812757" target="_blank" rel="noopener noreferrer" class="btn btn--success" style="width: 100%;">
+    <div style="padding-top: 24px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px;">
+      <button class="lang-toggle-btn" id="mobile-lang-toggle" aria-label="Toggle language" style="width: 100%; justify-content: center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span class="lang-label">العربية</span>
+      </button>
+      <a href="https://wa.me/201553812757" target="_blank" rel="noopener noreferrer" class="btn btn--success" style="width: 100%;" data-i18n="whatsapp-cta">
         Message on WhatsApp
       </a>
     </div>
@@ -119,7 +122,7 @@
   <main id="main">
 
     <!-- ======================================================================
-         SECTION 01: HERO / COVER (#home)
+         SECTION 01: HERO STAGE (#home)
          ====================================================================== -->
     <section class="hero-section" id="home" aria-labelledby="hero-heading">
       <div class="wrap">
@@ -127,26 +130,26 @@
 
           <!-- Left Copy Column -->
           <div class="hero-copy">
-            <div class="hero-eyebrow-row">
+            <div class="hero-eyebrow-row hero-anim-item">
               <span class="badge-live">
-                <span class="badge-dot"></span> Available for Q1–Q2 Projects
+                <span class="badge-dot"></span> <span data-i18n="hero-badge">Available for Q1–Q2 Projects</span>
               </span>
               <span class="mono" style="font-size: 12px; color: var(--muted); letter-spacing: 0.1em;">
                 EGY • KSA • GCC
               </span>
             </div>
 
-            <h1 id="hero-heading" class="hero-headline">
+            <h1 id="hero-heading" class="hero-headline hero-anim-item" data-i18n="hero-heading">
               <span class="line-block">Turning Ad Spend</span>
               <span class="line-block">Into <em>Measurable Revenue</em></span>
             </h1>
 
-            <p class="hero-desc">
+            <p class="hero-desc hero-anim-item" data-i18n="hero-desc">
               I’m <strong>Amr Khaled</strong> — a Performance Marketer and Media Buyer specialized in Paid Advertising, E-commerce, and Growth. I look beyond vanity clicks to optimize the full funnel from first impression to verified purchase.
             </p>
 
             <!-- Platform Chips -->
-            <div class="hero-platforms">
+            <div class="hero-platforms hero-anim-item">
               <span class="platform-pill">
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99h-2.54V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 17 22 12c0-5.52-4.48-10-10-10z"/></svg>
                 Meta Ads
@@ -166,12 +169,12 @@
             </div>
 
             <!-- CTA Row -->
-            <div class="btn-row">
-              <a href="#results" class="btn btn--primary">
+            <div class="btn-row hero-anim-item">
+              <a href="#results" class="btn btn--primary" data-i18n="hero-btn-work">
                 View My Work
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
-              <a href="#contact" class="btn btn--ghost">
+              <a href="#contact" class="btn btn--ghost" data-i18n="hero-btn-contact">
                 Let's Work Together
               </a>
             </div>
@@ -189,22 +192,22 @@
         </div>
 
         <!-- Hero Stats Bar (Real Data Backed) -->
-        <div class="hero-stats-bar">
+        <div class="hero-stats-bar reveal-init">
           <div class="hero-stat-item">
-            <span class="hero-stat-num">+3.8M</span>
-            <span class="hero-stat-label">Ad Impressions Tracked</span>
+            <span class="hero-stat-num" data-count="3.8" data-prefix="+" data-suffix="M">+3.8M</span>
+            <span class="hero-stat-label" data-i18n="stat-impressions">Ad Impressions Tracked</span>
           </div>
           <div class="hero-stat-item">
-            <span class="hero-stat-num">5.38<em>x</em></span>
-            <span class="hero-stat-label">Peak E-com Purchase ROAS</span>
+            <span class="hero-stat-num" data-count="5.38" data-suffix="x">5.38<em>x</em></span>
+            <span class="hero-stat-label" data-i18n="stat-roas">Peak E-com Purchase ROAS</span>
           </div>
           <div class="hero-stat-item">
-            <span class="hero-stat-num">84.9K<em>+</em></span>
-            <span class="hero-stat-label">SAR Google Spend Managed</span>
+            <span class="hero-stat-num" data-count="84.9" data-suffix="K+">84.9K<em>+</em></span>
+            <span class="hero-stat-label" data-i18n="stat-spend">SAR Google Spend Managed</span>
           </div>
           <div class="hero-stat-item">
-            <span class="hero-stat-num">+22.2K</span>
-            <span class="hero-stat-label">High-Intent Conversions</span>
+            <span class="hero-stat-num" data-count="22.2" data-prefix="+" data-suffix="K">+22.2K</span>
+            <span class="hero-stat-label" data-i18n="stat-conversions">High-Intent Conversions</span>
           </div>
         </div>
 
