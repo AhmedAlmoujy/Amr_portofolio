@@ -1793,7 +1793,7 @@ function initLanguageSwitcher() {
   const desktopBtn = document.getElementById('lang-toggle');
   const mobileBtn = document.getElementById('mobile-lang-toggle');
   
-  const savedLang = localStorage.getItem('amr_portfolio_lang') || 'en';
+  const savedLang = localStorage.getItem('amr_portfolio_lang') || 'ar';
   setLanguage(savedLang, false);
 
   function toggle() {

@@ -530,12 +530,14 @@ ul, ol {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  gap: 16px;
 }
 
 .brand-logo {
   display: flex;
   align-items: baseline;
   gap: 8px;
+  flex: 1 1 0%;
 }
 
 .brand-name {
@@ -544,6 +546,7 @@ ul, ol {
   font-weight: var(--w-semi);
   color: var(--text);
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .brand-name span {
@@ -553,7 +556,9 @@ ul, ol {
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 28px;
+  justify-content: center;
+  gap: clamp(12px, 1.4vw, 22px);
+  flex: 0 0 auto;
 }
 
 .nav-link {
@@ -588,7 +593,10 @@ ul, ol {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: flex-end;
+  gap: 8px;
+  flex: 1 1 0%;
+  white-space: nowrap;
 }
 
 .header-cta-btn {
@@ -2780,14 +2788,13 @@ html[lang="ar"] .btn svg {
   transform: scaleX(-1);
 }
 
-html[lang="ar"] .header-nav {
-  margin-right: auto;
-  margin-left: 0;
+html[lang="ar"] .nav-desktop {
+  justify-content: center;
 }
 
 html[lang="ar"] .header-actions {
-  margin-left: 0;
-  margin-right: auto;
+  justify-content: flex-end;
+  margin: 0;
 }
 
 html[lang="ar"] .toast-msg {
