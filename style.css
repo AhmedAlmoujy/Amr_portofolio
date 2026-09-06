@@ -672,6 +672,23 @@ ul, ol {
     text-align: center;
     gap: 40px;
   }
+
+  .hero-portrait-wrap {
+    order: -1;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-portrait-wrap {
+    max-width: 320px;
+  }
 }
 
 .hero-copy {
